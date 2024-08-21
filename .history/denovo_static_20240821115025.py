@@ -2,7 +2,6 @@ import os
 import subprocess
 import pysam
 import sys
-import gzip
 
 def simple(contigfile,outpath,min_size,min_size_assemblyerror):
 	if len(contigfile)==2:
@@ -21,10 +20,6 @@ def simple(contigfile,outpath,min_size,min_size_assemblyerror):
 	totallength_large=0
 	contig_length_info=[]
 	for contig in contigfile:
-		if contig.endswith('.gz'):
-			contig=gzip.open(contig,'rt')
-		else:
-			contig=open(contig,'r')
 		allcontig=open(contig,'r').read().split('>')[1:]
 		for c in allcontig:
 			c=c.split('\n')[:-1]
